@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: multi-datasource
+  datasource-first:
+    hikari:
+      driver-class-name: com.mysql.jdbc.Driver
+      maxLifetime: 1765000
+      maximumPoolSize: 2000
+      idleTimeout: 600000
+  datasource-second:
+    hikari:
+      driver-class-name: com.mysql.jdbc.Driver
+      max-lifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
+      maximum-pool-size: 1000
+      idle-timeout: 600000
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    default-statement-timeout: 20
+
+---
+# 开发环境配置
+spring:
+  profiles: dev
+  datasource-first:
+    hikari:
+      jdbc-url: jdbc:mysql://192.168.0.18:63306/
+      username: root
+      password: root
+  datasource-second:
+    hikari:
+      jdbc-url: jdbc:mysql://192.168.0.15:63306/
+      username: root
+      password: root
