@@ -22,8 +22,11 @@ public class FirstDatasourceConf {
     public static final String FIRST_SESSION_FACTORY = "firstSessionFactory";
 
     @Bean(name = FIRST_SESSION_FACTORY)
-    public SqlSessionFactory fristSessionFactory(MybatisProperties properties) throws Exception {
+    public SqlSessionFactory fristSessionFactory(// 如果是用的mybatis plus插件，且用了配置，这里配置文件是MybatisPlusProperties properties
+                                                 MybatisProperties properties) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        // 如果是用的mybatis plus插件需要这个类
+        // MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(firstDataSource());
         sqlSessionFactoryBean.setMapperLocations(properties.resolveMapperLocations());
         return sqlSessionFactoryBean.getObject();
