@@ -25,7 +25,7 @@ public class FirstDatasourceConf {
     public SqlSessionFactory fristSessionFactory(// 如果是用的mybatis plus插件，且用了配置，这里配置文件是MybatisPlusProperties properties
                                                  MybatisProperties properties) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        // 如果是用的mybatis plus插件需要这个类
+        // 如果是用的mybatis plus插件需要这个类 Invalid bound statement (not found)
         // MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(firstDataSource());
         sqlSessionFactoryBean.setMapperLocations(properties.resolveMapperLocations());
